@@ -32,6 +32,8 @@ Route::post('/vendors/store', [VendorController::class, 'store'])->name('vendors
 
 Route::get("/vendors/{id}",[VendorController::class,"show"]);
 
+Route::get("/posts/create",[PostController::class,"create"]);
+Route::post("/posts/store",[PostController::class,"store"])->name("posts.store");
 Route::get("/posts",[PostController::class,"index"]);
 
 Route::get("/posts/{id}",[PostController::class,"show"]);
@@ -45,3 +47,4 @@ Route::get('/responses', [ResponseController::class, 'index']);
 Route::get("/sign-in",[SignInController::class,"create"]);
 
 Route::post("/sign-in",[SignInController::class,"store"])->name ("sign-in.store");
+
