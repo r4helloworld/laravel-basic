@@ -24,7 +24,12 @@ class PostController extends Controller
         //変数$postsをposts/show.blade.phpに
         return view ("posts.show",compact("posts"));
     }
+
     public function create(){
         return view ("posts.create");
+    }
+    
+    public function store(){
+        
     }
 }
