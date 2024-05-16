@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 //use resources\views\posts;
 use Illuminate\Support\Facades\DB;
 use App\Models\Posts;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class PostController extends Controller
 {
@@ -29,7 +30,18 @@ class PostController extends Controller
         return view ("posts.create");
     }
     
-    public function store(){
-        
+    public function store(Request $request){
+        //バリデーションを設定する
+        $validated = $request->validate([
+            "title" => "required|max:20",
+            "content" => "required|max:200",
+        ]);
+        //postテーブルにデータ追加
+        $post = new Posts();
+        $post ->title =$validated["title"];
+        $post ->content = $validated["content"];
+        $post ->save();
+
+        return redirect('/posts')->with('status', 'Post created successfully!');
     }
 }
